@@ -4,5 +4,7 @@ public class Main {
         Car c2 = new Saab95();
 
         c2.move();
+
+        System.out.println(c2.xPos);
     }
 }

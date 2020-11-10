@@ -25,15 +25,5 @@ public class Volvo240 extends Car{
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
     }
 
-    // TODO fix this method according to lab pm
-    void gas(double amount) {
-        incrementSpeed(amount);
-    }
-
-    // TODO fix this method according to lab pm
-    void brake(double amount) {
-        decrementSpeed(amount);
-    }
-
 
 }

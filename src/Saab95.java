@@ -34,14 +34,5 @@ public class Saab95 extends Car {
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
     }
 
-    // TODO fix this method according to lab pm
-    void gas(double amount) {
-        incrementSpeed(amount);
-    }
-
-    // TODO fix this method according to lab pm
-    void brake(double amount) {
-        decrementSpeed(amount);
-    }
 
 }

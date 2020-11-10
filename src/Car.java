@@ -6,8 +6,14 @@ public abstract class Car implements Movable {
     protected double enginePower; //Motorns kraft
     protected String modelName; //Namn på bil
     protected double currentSpeed; //Hasitghet
-    protected double xPos = 0, yPos = 0;
-    protected double angle = 0;
+    protected double xPos, yPos;
+    protected double angle;
+
+    protected Car(){
+        angle = 0;
+        xPos = 0;
+        yPos = 0;
+    }
 
     //Skapar metoder för att komma runt privata instansvariabler i super
     String getModelName() {
@@ -60,14 +66,27 @@ public abstract class Car implements Movable {
     void decrementSpeed(double amount) {
     }
 
-    @Override
+    // TODO fix this method according to lab pm
+    void gas(double amount) {
+
+        if (amount < 0 || amount > 1){
+
+        }
+
+        incrementSpeed(amount);
+    }
+
+    // TODO fix this method according to lab pm
+    void brake(double amount) {
+        decrementSpeed(amount);
+    }
+
     public void move() {
         //Komposantuppdelning
         xPos = xPos + getCurrentSpeed() * Math.cos(angle);
         yPos = yPos + getCurrentSpeed() * Math.sin(angle);
     }
 
-    @Override
     public void turn(double angleChange) {
         angle = angle + angleChange;
     }
