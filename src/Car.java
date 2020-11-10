@@ -23,7 +23,9 @@ public abstract class Car {
     double getEnginePower() {
         return enginePower;
     }
-
+void setEnginePower(double p) {
+        this.enginePower = p;
+}
     double getCurrentSpeed() {
         return currentSpeed;
     }
