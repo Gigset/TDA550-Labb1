@@ -9,7 +9,7 @@ public abstract class Car implements Movable {
     protected double xPos, yPos;
     protected double angle;
 
-    protected Car(){
+    protected Car() {
         angle = 0;
         xPos = 0;
         yPos = 0;
@@ -69,10 +69,6 @@ public abstract class Car implements Movable {
     // TODO fix this method according to lab pm
     void gas(double amount) {
 
-        if (amount < 0 || amount > 1){
-
-        }
-
         incrementSpeed(amount);
     }
 
@@ -87,8 +83,13 @@ public abstract class Car implements Movable {
         yPos = yPos + getCurrentSpeed() * Math.sin(angle);
     }
 
-    public void turn(double angleChange) {
-        angle = angle + angleChange;
+    //Förut hade vi turn(double angleChange), problem med accessen... vrf?
+    public void turnLeft() {
+        angle = angle + Math.PI / 2;
     }
 
+    public void turnRight() {
+
+        angle = angle - Math.PI / 2;
+    }
 }

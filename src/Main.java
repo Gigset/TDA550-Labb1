@@ -5,6 +5,6 @@ public class Main {
 
         c2.move();
 
-        System.out.println(c2.xPos);
+        System.out.println(c2.getCurrentSpeed());
     }
 }
