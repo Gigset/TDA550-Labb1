@@ -1,8 +1,16 @@
 import java.awt.*;
 
+/**
+ * Subclass Saab95 inherits from Car
+ */
+
 public class Saab95 extends Car {
 
     boolean turboOn;
+
+    /**
+     * Constructor
+     */
 
     public Saab95() {
         super(2, Color.red, 125, "Saab95");
@@ -16,6 +24,10 @@ public class Saab95 extends Car {
     void setTurboOff() {
         turboOn = false;
     }
+
+    /**
+     * @return factor depending on enginePower and turbo
+     */
 
     double speedFactor() {
         double turbo = 1;

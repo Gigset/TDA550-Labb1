@@ -1,5 +1,9 @@
 import java.awt.*;
 
+/**
+ * Abstract class Car using the interface Movable
+ */
+
 public abstract class Car implements Movable {
     private int nrDoors; //Antal dörrar
     private Color color; //Färg på bil
@@ -8,6 +12,13 @@ public abstract class Car implements Movable {
     private double currentSpeed; //Hasitghet
     private double xPos, yPos;
     private double angle;
+
+    /**
+     * @param nr   nr of doors
+     * @param c    Color
+     * @param eP   enginepower
+     * @param name model name
+     */
 
     protected Car(int nr, Color c, double eP, String name) {
         nrDoors = nr;
@@ -19,7 +30,10 @@ public abstract class Car implements Movable {
         yPos = 0;
     }
 
-    //Skapar metoder för att komma runt privata instansvariabler i super
+    /**
+     * Getters and setters to access private instance variables
+     */
+
     String getModelName() {
         return this.modelName;
     }
@@ -44,8 +58,14 @@ public abstract class Car implements Movable {
         return currentSpeed;
     }
 
-    void setCurrentSpeed(double amount) {
-        currentSpeed = currentSpeed + amount;
+    //Sets the current speed, within [0, enginePower]
+    private void setCurrentSpeed(double amount) {
+        if (amount > getEnginePower()) {
+            currentSpeed = getEnginePower();
+        } else if (amount < 0) {
+            currentSpeed = 0;
+        } else currentSpeed = amount;
+
     }
 
     Color getColor() {
@@ -56,59 +76,91 @@ public abstract class Car implements Movable {
         color = clr;
     }
 
+    /**
+     * Sets currentSpeed to 0.1
+     */
     void startEngine() {
         currentSpeed = 0.1;
     }
 
+    /**
+     * sets currentSpeed to 0
+     */
     void stopEngine() {
         currentSpeed = 0;
     }
 
+    /**
+     * Abstract method, defined in subclasses
+     *
+     * @return factor used in increment/decrementSpeed
+     */
     abstract double speedFactor();
 
-    void incrementSpeed(double amount) {
-        double newSpeed = getCurrentSpeed() + speedFactor() * amount;
-        if (newSpeed > getEnginePower()) {
-            setCurrentSpeed(getEnginePower());
-        } else
-            setCurrentSpeed(newSpeed);
-    }
-
-    void decrementSpeed(double amount) {
-        double newSpeed = getCurrentSpeed() - speedFactor() * amount;
-        if (newSpeed < 0) {
-            setCurrentSpeed(0);
-
-        } else setCurrentSpeed(newSpeed);
-    }
-
-    // TODO fix this method according to lab pm
-    void gas(double amount) {
+    /**
+     * Increases speed by some value
+     *
+     * @param amount factor in new speed
+     */
+    void incrementSpeed(double amount) throws Exception {
         if (amount > 1 || amount < 0) {
-            System.out.println("Gas amount must be in the range 0-1");
-            return;
-        } else try {
+            throw new Exception("Amount must be within 0-1");
+        }
+        setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
+    }
+
+    /**
+     * Decreases speed by some value
+     *
+     * @param amount factor in new speed
+     */
+    void decrementSpeed(double amount) throws Exception {
+        if (amount > 1 || amount < 0) {
+            throw new Exception("Amount must be within 0-1");
+        }
+        setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
+    }
+
+    /**
+     * Increases speed with incrementSpeed()
+     *
+     * @param amount within 0-1
+     */
+    void gas(double amount) {
+        try {
             incrementSpeed(amount);
         } catch (Exception E) {
             System.out.println(E.getMessage());
         }
     }
 
-    // TODO fix this method according to lab pm
+    /**
+     * Decreases speed with decrementSpeed()
+     *
+     * @param amount within 0-1
+     */
     void brake(double amount) {
-        if (amount > 1 || amount < 0) {
-            System.out.println("Brake amount must be in the range 0-1");
-            return;
-        } else decrementSpeed(amount);
+        try {
+            decrementSpeed(amount);
+        } catch (Exception E) {
+            System.out.println(E.getMessage());
+        }
     }
 
+    /**
+     * Komposantuppdelning
+     * Changes position according to angle and currentSpeed
+     */
     public void move() {
-        //Komposantuppdelning
         xPos = xPos + getCurrentSpeed() * Math.cos(angle);
         yPos = yPos + getCurrentSpeed() * Math.sin(angle);
     }
 
-    //Förut hade vi turn(double angleChange), problem med accessen... vrf?
+    /**
+     * changes current direction
+     *
+     * @param angleChange amount which you turn
+     */
     public void turn(double angleChange) {
         angle = angle + angleChange;
     }
