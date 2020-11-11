@@ -3,9 +3,9 @@ public class Main {
         Car c1 = new Volvo240();
         Car c2 = new Saab95();
 
-        c2.gas(2);
+        c2.gas(0.5);
         System.out.println(c2.getCurrentSpeed());
-        c2.brake(2);
+        c2.brake(0.2);
         System.out.println(c2.getCurrentSpeed());
     }
 }

@@ -35,7 +35,7 @@ public abstract class Car implements Movable {
      */
 
     String getModelName() {
-        return this.modelName;
+        return modelName;
     }
 
     int getNrDoors() {
@@ -43,7 +43,7 @@ public abstract class Car implements Movable {
     }
 
     void setNrDoors(int n) {
-        this.nrDoors = n;
+        nrDoors = n;
     }
 
     double getEnginePower() {
