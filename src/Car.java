@@ -67,24 +67,39 @@ public abstract class Car implements Movable {
     abstract double speedFactor();
 
     void incrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
+        double newSpeed = getCurrentSpeed() + speedFactor() * amount;
+        if (newSpeed > getEnginePower()) {
+            setCurrentSpeed(getEnginePower());
+        } else
+            setCurrentSpeed(newSpeed);
     }
 
     void decrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
+        double newSpeed = getCurrentSpeed() - speedFactor() * amount;
+        if (newSpeed < 0) {
+            setCurrentSpeed(0);
+
+        } else setCurrentSpeed(newSpeed);
     }
 
     // TODO fix this method according to lab pm
     void gas(double amount) {
         if (amount > 1 || amount < 0) {
-           System.out.print("Gas amount must be in the range 0-1");
+            System.out.println("Gas amount must be in the range 0-1");
             return;
-        } else incrementSpeed(amount);
+        } else try {
+            incrementSpeed(amount);
+        } catch (Exception E) {
+            System.out.println(E.getMessage());
+        }
     }
 
     // TODO fix this method according to lab pm
     void brake(double amount) {
-        decrementSpeed(amount);
+        if (amount > 1 || amount < 0) {
+            System.out.println("Brake amount must be in the range 0-1");
+            return;
+        } else decrementSpeed(amount);
     }
 
     public void move() {

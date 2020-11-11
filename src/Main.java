@@ -4,7 +4,7 @@ public class Main {
         Car c2 = new Saab95();
 
         c2.move();
-
+        c2.brake(1);
         System.out.println(c2.getCurrentSpeed());
     }
 }
