@@ -65,7 +65,6 @@ public abstract class Car implements Movable {
         } else if (amount < 0) {
             currentSpeed = 0;
         } else currentSpeed = amount;
-
     }
 
     Color getColor() {
@@ -158,7 +157,6 @@ public abstract class Car implements Movable {
 
     /**
      * changes current direction
-     *
      * @param angleChange amount which you turn
      */
     public void turn(double angleChange) {
