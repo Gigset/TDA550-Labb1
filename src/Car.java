@@ -1,15 +1,19 @@
 import java.awt.*;
 
 public abstract class Car implements Movable {
-    protected int nrDoors; //Antal dörrar
-    protected Color color; //Färg på bil
-    protected double enginePower; //Motorns kraft
-    protected String modelName; //Namn på bil
-    protected double currentSpeed; //Hasitghet
-    protected double xPos, yPos;
-    protected double angle;
+    private int nrDoors; //Antal dörrar
+    private Color color; //Färg på bil
+    private double enginePower; //Motorns kraft
+    private String modelName; //Namn på bil
+    private double currentSpeed; //Hasitghet
+    private double xPos, yPos;
+    private double angle;
 
-    protected Car() {
+    protected Car(int nr, Color c, double eP, String name) {
+        nrDoors = nr;
+        color = c;
+        enginePower = eP;
+        modelName = name;
         angle = 0;
         xPos = 0;
         yPos = 0;
@@ -33,11 +37,15 @@ public abstract class Car implements Movable {
     }
 
     void setEnginePower(double p) {
-        this.enginePower = p;
+        enginePower = p;
     }
 
     double getCurrentSpeed() {
         return currentSpeed;
+    }
+
+    void setCurrentSpeed(double amount) {
+        currentSpeed = currentSpeed + amount;
     }
 
     Color getColor() {
@@ -56,20 +64,22 @@ public abstract class Car implements Movable {
         currentSpeed = 0;
     }
 
-    double speedFactor(double amount) {
-        return 0;
-    }
+    abstract double speedFactor();
 
     void incrementSpeed(double amount) {
+        setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
     }
 
     void decrementSpeed(double amount) {
+        setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
     }
 
     // TODO fix this method according to lab pm
     void gas(double amount) {
-
-        incrementSpeed(amount);
+        if (amount > 1 || amount < 0) {
+           System.out.print("Gas amount must be in the range 0-1");
+            return;
+        } else incrementSpeed(amount);
     }
 
     // TODO fix this method according to lab pm
@@ -84,12 +94,7 @@ public abstract class Car implements Movable {
     }
 
     //Förut hade vi turn(double angleChange), problem med accessen... vrf?
-    public void turnLeft() {
-        angle = angle + Math.PI / 2;
-    }
-
-    public void turnRight() {
-
-        angle = angle - Math.PI / 2;
+    public void turn(double angleChange) {
+        angle = angle + angleChange;
     }
 }
