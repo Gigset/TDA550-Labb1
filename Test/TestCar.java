@@ -127,8 +127,17 @@ public class TestCar {
     }
 
     @Test
-    public void testTurn(){
+    public void testTurn() {
         volvo.turn(3);
         assertTrue(volvo.getAngle() == 3);
+    }
+
+    @Test
+    public void testSaabSpeedFactor() {
+        Saab95 saab2 = new Saab95();
+        saab2.setTurboOn();
+        double trouble = saab2.speedFactor();
+        saab2.setTurboOff();
+                assertTrue(trouble > saab2.speedFactor());
     }
 }
