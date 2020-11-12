@@ -38,6 +38,10 @@ public abstract class Car implements Movable {
         return position;
     }
 
+    double getAngle(){
+        return angle;
+    }
+
     String getModelName() {
         return modelName;
     }

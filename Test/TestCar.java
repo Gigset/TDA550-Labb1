@@ -125,4 +125,10 @@ public class TestCar {
         }
         assertFalse(volvo.getPosition().getX() == 0);
     }
+
+    @Test
+    public void testTurn(){
+        volvo.turn(3);
+        assertTrue(volvo.getAngle() == 3);
+    }
 }
