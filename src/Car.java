@@ -10,7 +10,7 @@ public abstract class Car implements Movable {
     private double enginePower; //Motorns kraft
     private String modelName; //Namn på bil
     private double currentSpeed; //Hasitghet
-    private double xPos, yPos;
+    private Point position;
     private double angle;
 
     /**
@@ -27,20 +27,22 @@ public abstract class Car implements Movable {
         enginePower = eP;
         modelName = name;
         angle = 0;
-        xPos = 0;
-        yPos = 0;
+        position = new Point(0, 0);
     }
 
     /**
      * Getters and setters to access private instance variables
      */
 
+    Point getPosition() {
+        return position;
+    }
+
     String getModelName() {
         return modelName;
     }
 
     /**
-     *
      * @return
      */
     int getNrDoors() {
@@ -156,12 +158,15 @@ public abstract class Car implements Movable {
      * Changes position according to angle and currentSpeed
      */
     public void move() {
-        xPos = xPos + getCurrentSpeed() * Math.cos(angle);
-        yPos = yPos + getCurrentSpeed() * Math.sin(angle);
+        double xPos = position.getX() + getCurrentSpeed() * Math.cos(angle);
+        double yPos = position.getY() + getCurrentSpeed() * Math.sin(angle);
+
+        position.setLocation(xPos, yPos);
     }
 
     /**
      * changes current direction
+     *
      * @param angleChange amount which you turn
      */
     public void turn(double angleChange) {

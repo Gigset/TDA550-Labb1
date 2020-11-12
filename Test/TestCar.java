@@ -1,5 +1,8 @@
 import org.junit.Test;
 
+import java.awt.*;
+
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class TestCar {
@@ -22,9 +25,11 @@ public class TestCar {
             volvo.gas(1);
             saab.gas(1);
         }
-        volvo.brake(1);
-        saab.brake(1);
-        assertTrue(volvo.getCurrentSpeed() < volvo.getEnginePower() && saab.getCurrentSpeed() < saab.getEnginePower());
+        for (int i = 0; i < 1000; i++) {
+            volvo.brake(1);
+            saab.brake(1);
+        }
+        assertTrue(volvo.getCurrentSpeed() == 0 && saab.getCurrentSpeed() == 0);
     }
 
     @Test
@@ -56,6 +61,7 @@ public class TestCar {
             } catch (Exception E) {
             }
         }
+        assertTrue(volvo.getCurrentSpeed() == volvo.getEnginePower() && saab.getCurrentSpeed() == saab.getEnginePower());
     }
 
     @Test
@@ -67,5 +73,56 @@ public class TestCar {
             } catch (Exception E) {
             }
         }
+        assertTrue(volvo.getCurrentSpeed() == 0 && saab.getCurrentSpeed() == 0);
+    }
+
+    @Test
+    public void testGetModelName() {
+        assertTrue(volvo.getModelName().equals("Volvo240") && saab.getModelName().equals("Saab95"));
+    }
+
+    @Test
+    public void testGetNrDoors() {
+        assertTrue(volvo.getNrDoors() == 4 && saab.getNrDoors() == 2);
+    }
+
+    @Test
+    public void setNrDoors() {
+        volvo.setNrDoors(1);
+        saab.setNrDoors(1);
+        assertTrue(volvo.getNrDoors() == 1 && saab.getNrDoors() == 1);
+    }
+
+    @Test
+    public void testGetColor() {
+        assertTrue(volvo.getColor().equals(Color.black) && saab.getColor().equals(Color.red));
+    }
+
+    @Test
+    public void testSetColor() {
+        volvo.setColor(Color.green);
+        assertTrue(volvo.getColor().equals(Color.green));
+    }
+
+    @Test
+    public void testGetEnginePower() {
+        assertTrue(volvo.getEnginePower() == 125 && saab.getEnginePower() == 125);
+    }
+
+    @Test
+    public void testSetEnginePower() {
+        volvo.setEnginePower(200);
+        saab.setEnginePower(75);
+        assertTrue(volvo.getEnginePower() == 200 && saab.getEnginePower() == 75);
+    }
+
+    @Test
+    public void testMove() {
+        volvo.turn(0);
+        volvo.gas(1);
+        for (int i = 0; i < 1000; i++) {
+            volvo.move();
+        }
+        assertFalse(volvo.getPosition().getX() == 0);
     }
 }
