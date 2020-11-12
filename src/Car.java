@@ -20,6 +20,7 @@ public abstract class Car implements Movable {
      * @param name model name
      */
 
+
     protected Car(int nr, Color c, double eP, String name) {
         nrDoors = nr;
         color = c;
@@ -38,6 +39,10 @@ public abstract class Car implements Movable {
         return modelName;
     }
 
+    /**
+     *
+     * @return
+     */
     int getNrDoors() {
         return nrDoors;
     }

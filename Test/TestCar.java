@@ -17,6 +17,17 @@ public class TestCar {
     }
 
     @Test
+    public void testBrakeVolvoSaab() {
+        for (int i = 0; i < 1000; i++) {
+            volvo.gas(1);
+            saab.gas(1);
+        }
+        volvo.brake(1);
+        saab.brake(1);
+        assertTrue(volvo.getCurrentSpeed() < volvo.getEnginePower() && saab.getCurrentSpeed() < saab.getEnginePower());
+    }
+
+    @Test
     public void testStartEngine() {
         for (int i = 0; i < 1000; i++) {
             volvo.startEngine();
@@ -42,6 +53,17 @@ public class TestCar {
             try {
                 volvo.incrementSpeed(1);
                 saab.incrementSpeed(1);
+            } catch (Exception E) {
+            }
+        }
+    }
+
+    @Test
+    public void testDecrementSpeed() {
+        for (int i = 0; i < 1000; i++) {
+            try {
+                volvo.decrementSpeed(1);
+                saab.decrementSpeed(1);
             } catch (Exception E) {
             }
         }
