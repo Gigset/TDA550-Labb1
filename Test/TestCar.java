@@ -52,29 +52,7 @@ public class TestCar {
         assertTrue(volvo.getCurrentSpeed() == 0.0 && saab.getCurrentSpeed() == 0.0);
     }
 
-    @Test
-    public void testIncrementSpeed() {
-        for (int i = 0; i < 1000; i++) {
-            try {
-                volvo.incrementSpeed(1);
-                saab.incrementSpeed(1);
-            } catch (Exception E) {
-            }
-        }
-        assertTrue(volvo.getCurrentSpeed() == volvo.getEnginePower() && saab.getCurrentSpeed() == saab.getEnginePower());
-    }
-
-    @Test
-    public void testDecrementSpeed() {
-        for (int i = 0; i < 1000; i++) {
-            try {
-                volvo.decrementSpeed(1);
-                saab.decrementSpeed(1);
-            } catch (Exception E) {
-            }
-        }
-        assertTrue(volvo.getCurrentSpeed() == 0 && saab.getCurrentSpeed() == 0);
-    }
+ 
 
     @Test
     public void testGetModelName() {

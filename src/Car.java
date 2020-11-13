@@ -38,7 +38,7 @@ public abstract class Car implements Movable {
         return position;
     }
 
-    double getAngle(){
+    double getAngle() {
         return angle;
     }
 
@@ -46,9 +46,6 @@ public abstract class Car implements Movable {
         return modelName;
     }
 
-    /**
-     * @return
-     */
     int getNrDoors() {
         return nrDoors;
     }
@@ -112,7 +109,7 @@ public abstract class Car implements Movable {
      *
      * @param amount factor in new speed
      */
-    void incrementSpeed(double amount) throws Exception {
+    private void incrementSpeed(double amount) throws Exception {
         if (amount > 1 || amount < 0) {
             throw new Exception("Amount must be within 0-1");
         }
@@ -124,7 +121,7 @@ public abstract class Car implements Movable {
      *
      * @param amount factor in new speed
      */
-    void decrementSpeed(double amount) throws Exception {
+    private void decrementSpeed(double amount) throws Exception {
         if (amount > 1 || amount < 0) {
             throw new Exception("Amount must be within 0-1");
         }
@@ -136,7 +133,7 @@ public abstract class Car implements Movable {
      *
      * @param amount within 0-1
      */
-    void gas(double amount) {
+    public void gas(double amount) {
         try {
             incrementSpeed(amount);
         } catch (Exception E) {
@@ -149,7 +146,7 @@ public abstract class Car implements Movable {
      *
      * @param amount within 0-1
      */
-    void brake(double amount) {
+    public void brake(double amount) {
         try {
             decrementSpeed(amount);
         } catch (Exception E) {
