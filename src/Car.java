@@ -66,7 +66,8 @@ public abstract class Car implements Movable {
         return currentSpeed;
     }
 
-    //Sets the current speed, within [0, enginePower]
+
+        //Sets the current speed, within [0, enginePower]
     private void setCurrentSpeed(double amount) {
         if (amount > getEnginePower()) {
             currentSpeed = getEnginePower();

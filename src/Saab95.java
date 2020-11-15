@@ -21,6 +21,9 @@ public class Saab95 extends Car {
         turboOn = true;
     }
 
+    /**
+     *
+     */
     void setTurboOff() {
         turboOn = false;
     }
