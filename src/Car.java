@@ -1,22 +1,23 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * Abstract class Car using the interface Movable
  */
 
 public abstract class Car implements Movable {
-    private int nrDoors; //Antal dörrar
-    private Color color; //Färg på bil
-    private double enginePower; //Motorns kraft
-    private String modelName; //Namn på bil
-    private double currentSpeed; //Hasitghet
-    private Point position;
-    private double angle;
+    private int nrDoors; //Number of doors
+    private Color color; //Color of car
+    private double enginePower; //double engine power
+    private final String modelName; //String model name
+    private double currentSpeed; //double current speed
+    private Point2D.Double position; //Point position
+    private double dirAngle; //double directional angle, radians
 
     /**
      * @param nr   nr of doors
      * @param c    Color
-     * @param eP   enginepower
+     * @param eP   engine power
      * @param name model name
      */
 
@@ -26,20 +27,24 @@ public abstract class Car implements Movable {
         color = c;
         enginePower = eP;
         modelName = name;
-        angle = 0;
-        position = new Point(0, 0);
+        dirAngle = 0;
+        position = new Point2D.Double(0, 0);
     }
 
     /**
      * Getters and setters to access private instance variables
      */
 
-    Point getPosition() {
+    public Point2D.Double getPosition() {
         return position;
     }
 
-    double getAngle() {
-        return angle;
+    public void setPosition(Point2D.Double newPos) {
+    position = newPos;
+    }
+
+    double getDirAngle() {
+        return dirAngle;
     }
 
     String getModelName() {
@@ -67,7 +72,7 @@ public abstract class Car implements Movable {
     }
 
 
-        //Sets the current speed, within [0, enginePower]
+    //Sets the current speed, within [0, enginePower]
     private void setCurrentSpeed(double amount) {
         if (amount > getEnginePower()) {
             currentSpeed = getEnginePower();
@@ -156,12 +161,11 @@ public abstract class Car implements Movable {
     }
 
     /**
-     * Komposantuppdelning
-     * Changes position according to angle and currentSpeed
+     * Changes position according to dirAngle and currentSpeed
      */
     public void move() {
-        double xPos = position.getX() + getCurrentSpeed() * Math.cos(angle);
-        double yPos = position.getY() + getCurrentSpeed() * Math.sin(angle);
+        double xPos = position.getX() + getCurrentSpeed() * Math.cos(dirAngle);
+        double yPos = position.getY() + getCurrentSpeed() * Math.sin(dirAngle);
 
         position.setLocation(xPos, yPos);
     }
@@ -172,6 +176,6 @@ public abstract class Car implements Movable {
      * @param angleChange amount which you turn
      */
     public void turn(double angleChange) {
-        angle = angle + angleChange;
+        dirAngle = dirAngle + angleChange;
     }
 }

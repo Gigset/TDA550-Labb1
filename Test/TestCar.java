@@ -107,7 +107,7 @@ public class TestCar {
     @Test
     public void testTurn() {
         volvo.turn(3);
-        assertTrue(volvo.getAngle() == 3);
+        assertTrue(volvo.getDirAngle() == 3);
     }
 
     @Test
