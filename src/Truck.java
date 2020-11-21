@@ -1,12 +1,20 @@
+import java.awt.*;
+import java.awt.geom.Point2D;
+
 /**
  * Abstract class, represents any type of truck platform
  */
 
-abstract public class TruckPlatform {
+abstract public class Truck extends Vehicle{
+
+    public Truck(Color c, double eP, String name) {
+       super(c, eP, name);
+    }
+
     /**
      * Boolean that says if a platform is fully raised or not
      */
-    private boolean fullyRaised;
+     boolean fullyRaised;
 
     /**
      * Getter for the variable fullyRaised

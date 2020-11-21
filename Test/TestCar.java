@@ -9,6 +9,7 @@ public class TestCar {
 
     Car volvo = new Volvo240();
     Car saab = new Saab95();
+    CarTransport assistanskåren = new CarTransport(Color.gray, 170, "assistanskåren");
 
     @Test
     public void testGasVolvoSaab() {
@@ -66,8 +67,8 @@ public class TestCar {
 
     @Test
     public void setNrDoors() {
-        volvo.setNrDoors(1);
-        saab.setNrDoors(1);
+        volvo.setNrDoors(2);
+        saab.setNrDoors(4);
         assertTrue(volvo.getNrDoors() == 1 && saab.getNrDoors() == 1);
     }
 
@@ -118,4 +119,12 @@ public class TestCar {
         saab2.setTurboOff();
                 assertTrue(trouble > saab2.speedFactor());
     }
+
+    @Test
+    public void testLoadCar() {
+        assistanskåren.setPlatformRaised();
+        assistanskåren.loadCar(saab);
+        assertFalse(assistanskåren.getCarsOnPlatform()== 1);
+    }
+
 }
