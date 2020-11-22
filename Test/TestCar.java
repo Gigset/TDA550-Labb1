@@ -2,14 +2,14 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class TestCar {
 
     Car volvo = new Volvo240();
     Car saab = new Saab95();
-    CarTransport assistanskåren = new CarTransport(Color.gray, 170, "assistanskåren");
+    CarTransport assistanskåren = new CarTransport(Color.gray, 170, "assistanskåren", 5);
+    Scania scania = new Scania();
 
     @Test
     public void testGasVolvoSaab() {
@@ -53,7 +53,6 @@ public class TestCar {
         assertTrue(volvo.getCurrentSpeed() == 0.0 && saab.getCurrentSpeed() == 0.0);
     }
 
- 
 
     @Test
     public void testGetModelName() {
@@ -80,7 +79,7 @@ public class TestCar {
     @Test
     public void testSetColor() {
         volvo.setColor(Color.green);
-        assertTrue(volvo.getColor().equals(Color.green));
+        assertEquals(volvo.getColor(), Color.green);
     }
 
     @Test
@@ -102,13 +101,13 @@ public class TestCar {
         for (int i = 0; i < 1000; i++) {
             volvo.move();
         }
-        assertFalse(volvo.getPosition().getX() == 0);
+        assertNotEquals(0, volvo.getPosition().getX(), 0.0);
     }
 
     @Test
     public void testTurn() {
         volvo.turn(3);
-        assertTrue(volvo.getDirAngle() == 3);
+        assertEquals(3, volvo.getDirAngle(), 0.0);
     }
 
     @Test
@@ -117,14 +116,29 @@ public class TestCar {
         saab2.setTurboOn();
         double trouble = saab2.speedFactor();
         saab2.setTurboOff();
-                assertTrue(trouble > saab2.speedFactor());
+        assertTrue(trouble > saab2.speedFactor());
     }
 
     @Test
     public void testLoadCar() {
-        assistanskåren.setPlatformRaised();
+        assistanskåren.raisePlatform();
         assistanskåren.loadCar(saab);
-        assertFalse(assistanskåren.getCarsOnPlatform()== 1);
+        assertNotEquals(1, assistanskåren.getCarsOnPlatform());
     }
 
+    @Test
+    public void testScaniaRaise() {
+        for (int i = 1; i < 100; i++) {
+            scania.raisePlatform(1);
+        }
+        assertEquals(70, scania.getCurrentInclineAngle(), 0.0);
+    }
+
+    @Test
+    public void testScaniaLower() {
+        for (int i = 1; i < 100; i++) {
+            scania.lowerPlatform(1);
+        }
+        assertEquals(0, scania.getCurrentInclineAngle(), 0.0);
+    }
 }

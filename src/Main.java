@@ -13,10 +13,7 @@ public class Main {
 
         Point2D.Double p = new Point2D.Double(Math.PI, Math.exp(1));
         volvo.setPosition(p);
-        try {
-            vårScania.raisePlatform(25);
-        } catch (Exception e) {
-        }
+
 
         CarRepair EllafixarAB = new CarRepair(7);
 

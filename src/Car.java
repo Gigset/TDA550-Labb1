@@ -5,14 +5,15 @@ public abstract class Car extends Vehicle {
     private int nrDoors; //Number of doors, not necessary in the other vehicles
 
     public Car(int Doors, Color c, double eP, String name) {
-      super(c,eP, name );
-      nrDoors = Doors;
+        super(c, eP, name);
+        nrDoors = Doors;
 
     }
 
     void setNrDoors(int n) {
         this.nrDoors = n;
     }
+
     int getNrDoors() {
         return nrDoors;
     }
@@ -31,16 +32,16 @@ public abstract class Car extends Vehicle {
      */
     @Override
     public void incrementSpeed(double amount) {
-        setCurrentSpeed(Math.min(getCurrentSpeed() +speedFactor() * amount, getEnginePower()));
+        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower()));
     }
 
     @Override
     /**
-     * Minskar speed till minst '0'
-     * @param amount mängden som vi vill minska med
+     * Sets speed to min of calculated speed and 0
+     * @param amount factor used to calculate new speed
      */
     public void decrementSpeed(double amount) {
-        setCurrentSpeed( Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
+        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount, 0));
     }
 
 

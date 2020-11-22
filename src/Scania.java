@@ -5,18 +5,10 @@ import java.awt.*;
  */
 public class Scania extends Truck {
 
-
-    /**
-     * Skapar en platform för scania
-     */
-
     private double currentInclineAngle;
-
 
     public Scania() {
         super(Color.CYAN, 300, "Scania");
-
-        setFullyRaised(false);
         currentInclineAngle = 0;
     }
 
@@ -25,30 +17,31 @@ public class Scania extends Truck {
     }
 
     /**
-     *Method which raises callers platform by some amount
+     * Method which raises callers platform by some amount
+     *
      * @param angleChange amount which we increase platform incline
-     * @throws Exception throws e if we try to raise by a negative number
      */
-    public void raisePlatform(double angleChange) throws Exception {
-        Math.min(70, currentInclineAngle+=angleChange);
+    public void raisePlatform(double angleChange) {
+        currentInclineAngle = Math.min(70, currentInclineAngle += angleChange);
     }
 
     /**
-     *Method which lowers active platform by some amount
+     * Method which lowers active platform by some amount
+     *
      * @param angleChange amount which we decrease platform incline
-     * @throws Exception throws e if we try to lower by a negative number
      */
-    public void lowerPlatform(double angleChange) throws Exception {
-       Math.max(0, currentInclineAngle-=angleChange);
+    public void lowerPlatform(double angleChange) {
+        currentInclineAngle = Math.max(0, currentInclineAngle -= angleChange);
     }
 
     /**
      * Overrides inherited method gas from vehicle, first checks if platform is lowered, then calls gas
+     *
      * @param amount how much we increase speed
      */
     @Override
     public void gas(double amount) {
-        if (this.getCurrentIncline() > 0) {
+        if (this.getCurrentInclineAngle() > 0) {
             System.out.println("Lower platform before gas");
         } else {
             super.gas(amount);
@@ -56,18 +49,13 @@ public class Scania extends Truck {
     }
 
 
-    /**
-     * Method which checks if is fully raised and updates. Byt namn??
-     */
-    public void checkIfFullyRaised() {
-        setFullyRaised(getCurrentIncline() == 70);
-    }
 
     /**
      * Method which raises the incline by some amount
      * First checks for negative numbers
      * calculates new angle, sets current angle to min(70, calculated angle)
      * updates fullyRaised
+     *
      * @param angleChange amount which platform is raised by
      * @throws Exception if entered a negative number
      */
@@ -82,7 +70,6 @@ public class Scania extends Truck {
             currentInclineAngle = 70;
         } else currentInclineAngle = newInclineAngle;
 
-        checkIfFullyRaised();
     }
 
     /**
@@ -90,6 +77,7 @@ public class Scania extends Truck {
      * First checks for negative numbers
      * calculates new angle, sets current angle to max(0, calculated angle)
      * updates fullyRaised
+     *
      * @param angleChange amount which platform is lowered by
      * @throws Exception if entered a negative number
      */
@@ -103,21 +91,11 @@ public class Scania extends Truck {
         if (newInclineAngle < 0) {
             currentInclineAngle = 0;
         } else currentInclineAngle = newInclineAngle;
-
-        checkIfFullyRaised();
-    }
-
-    /**
-     * Getter for current incline
-     * @return currentInclineAngle
-     */
-    public double getCurrentIncline() {
-        return currentInclineAngle;
     }
 
     /**
      * Setter for current incline
-     * / Kolla setCurrentInclineAngle så det inte dubbleras
+     *
      * @param newIncline what new incline is
      */
     public void setCurrentInclineAngle(double newIncline) {

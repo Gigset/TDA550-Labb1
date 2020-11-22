@@ -5,7 +5,6 @@ import java.awt.geom.Point2D;
  * Abstract class Car using the interface Movable
  */
 
-//flyttade upp hela Car-klassen in i Vehicle, för att både truck och car ska kunna ärva detta.
 public abstract class Vehicle implements Movable {
 
     private Color color; //Color of car
@@ -96,7 +95,8 @@ public abstract class Vehicle implements Movable {
     }
 
     /**
-     * Minskar speed till minst '0'
+     * Reduces speed to 0
+     *
      * @param amount mängden som vi vill minska med
      */
     public void decrementSpeed(double amount) {
@@ -111,7 +111,6 @@ public abstract class Vehicle implements Movable {
      * @param amount factor in new speed
      */
     public void incrementSpeed(double amount) {
-
         currentSpeed = Math.min(getCurrentSpeed() + amount, enginePower);
     }
 
@@ -121,9 +120,9 @@ public abstract class Vehicle implements Movable {
      * @param amount within 0-1
      */
     public void gas(double amount) {
-       if(amount>=0 && amount<=1 ) {
-               incrementSpeed(amount);
-           }else throw new RuntimeException("invalid number");
+        if (amount >= 0 && amount <= 1) {
+            incrementSpeed(amount);
+        } else System.out.println("Invalid number");
     }
 
     /**
@@ -132,10 +131,10 @@ public abstract class Vehicle implements Movable {
      * @param amount within 0-1
      */
     public void brake(double amount) {
-        if(amount>=0 && amount<=1 ) {
+        if (amount >= 0 && amount <= 1) {
             decrementSpeed(amount);
-        }else throw new RuntimeException("invalid number");
-        }
+        } else System.out.println("Invalid number");
+    }
 
 
     /**
