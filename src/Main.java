@@ -3,8 +3,8 @@ import java.awt.geom.Point2D;
 public class Main {
     public static void main(String[] args) {
         Scania vårScania = new Scania();
-        Car volvo = new Volvo240();
-        Car Volvo = volvo;
+        Car Volvo = new Volvo240();
+
         Car tamisvolvo = new Volvo240();
 
 
@@ -12,21 +12,10 @@ public class Main {
         Saab95 trimmadSaab = new Saab95();
 
         Point2D.Double p = new Point2D.Double(Math.PI, Math.exp(1));
-        volvo.setPosition(p);
+        Volvo.setPosition(p);
 
+        CarRepair<Volvo240> EllafixarAB = new CarRepair(7);
 
-        CarRepair EllafixarAB = new CarRepair(7);
-
-        EllafixarAB.addCar(volvo);
-        EllafixarAB.addCar(Volvo);
-
-        EllafixarAB.removeCar(tamisvolvo);
-       for(Object e : EllafixarAB.listOfCarsToRepair)
-           System.out.println(e) ;
-
-
-
-
-
+        EllafixarAB.addCar((Volvo240) Volvo);
     }
 }

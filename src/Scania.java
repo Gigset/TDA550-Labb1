@@ -41,13 +41,12 @@ public class Scania extends Truck {
      */
     @Override
     public void gas(double amount) {
-        if (this.getCurrentInclineAngle() > 0) {
+        if (getCurrentInclineAngle() > 0) {
             System.out.println("Lower platform before gas");
         } else {
             super.gas(amount);
         }
     }
-
 
 
     /**
@@ -57,11 +56,10 @@ public class Scania extends Truck {
      * updates fullyRaised
      *
      * @param angleChange amount which platform is raised by
-     * @throws Exception if entered a negative number
      */
-    public void raise(double angleChange) throws Exception {
+    public void raise(double angleChange) {
         if (angleChange < 0) {
-            throw new Exception("angleChange can't be a negative number");
+            System.out.println("angleChange can't be a negative number");
         }
 
         double newInclineAngle = currentInclineAngle + angleChange;
@@ -79,11 +77,10 @@ public class Scania extends Truck {
      * updates fullyRaised
      *
      * @param angleChange amount which platform is lowered by
-     * @throws Exception if entered a negative number
      */
-    public void lower(double angleChange) throws Exception {
+    public void lower(double angleChange) {
         if (angleChange < 0) {
-            throw new Exception("angleChange can't be a negative number");
+            System.out.println("angleChange can't be a negative number");
         }
 
         double newInclineAngle = currentInclineAngle - angleChange;
@@ -91,6 +88,7 @@ public class Scania extends Truck {
         if (newInclineAngle < 0) {
             currentInclineAngle = 0;
         } else currentInclineAngle = newInclineAngle;
+        
     }
 
     /**
