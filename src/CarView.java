@@ -81,6 +81,7 @@ public class CarView extends JFrame {
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
+        gasPanel.add(brakeSpinner, BorderLayout.PAGE_END);
 
         this.add(gasPanel);
 
