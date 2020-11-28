@@ -30,6 +30,7 @@ public class CarView extends JFrame {
     int gasAmount = 0;
     int brakeAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
+    JLabel brakeLabel = new JLabel("Amount of brake");
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
@@ -63,6 +64,7 @@ public class CarView extends JFrame {
                         0, //min
                         100, //max
                         1);//step
+
         gasSpinner = new JSpinner(spinnerModel);
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -81,6 +83,7 @@ public class CarView extends JFrame {
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
+        gasPanel.add(brakeLabel, BorderLayout.PAGE_START);
         gasPanel.add(brakeSpinner, BorderLayout.PAGE_END);
 
         this.add(gasPanel);
