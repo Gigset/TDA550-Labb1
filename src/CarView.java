@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
  **/
 
 public class CarView extends JFrame {
-    private static final int X = 800;
-    private static final int Y = 800;
+    private static final int X = 1000;
+    private static final int Y = 600;
 
     // The controller member
     CarController carC;
@@ -26,10 +26,13 @@ public class CarView extends JFrame {
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
-    JSpinner brakeSpinner = new JSpinner();
+
     int gasAmount = 0;
     int brakeAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
+
+    JPanel brakePanel = new JPanel();
+    JSpinner brakeSpinner = new JSpinner();
     JLabel brakeLabel = new JLabel("Amount of brake");
 
     JButton gasButton = new JButton("Gas");
@@ -65,6 +68,8 @@ public class CarView extends JFrame {
                         100, //max
                         1);//step
 
+        SpinnerModel spinnerModel1 = new SpinnerNumberModel(0, 0, 100, 1);
+
         gasSpinner = new JSpinner(spinnerModel);
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -72,7 +77,7 @@ public class CarView extends JFrame {
             }
         });
 
-        brakeSpinner = new JSpinner(spinnerModel);
+        brakeSpinner = new JSpinner(spinnerModel1);
         brakeSpinner.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -83,10 +88,11 @@ public class CarView extends JFrame {
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
-        gasPanel.add(brakeLabel, BorderLayout.PAGE_START);
-        gasPanel.add(brakeSpinner, BorderLayout.PAGE_END);
+        brakePanel.add(brakeLabel, BorderLayout.PAGE_START);
+        brakePanel.add(brakeSpinner, BorderLayout.PAGE_END);
 
         this.add(gasPanel);
+        this.add(brakePanel);
 
         controlPanel.setLayout(new GridLayout(2, 4));
 
