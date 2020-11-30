@@ -27,13 +27,11 @@ public class CarView extends JFrame {
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
 
-    int gasAmount = 0;
-    int brakeAmount = 0;
-    JLabel gasLabel = new JLabel("Amount of gas");
+    int gasOrBrakeAmount = 50;
+    JLabel gasLabel = new JLabel("Amount of gas or brake");
 
     JPanel brakePanel = new JPanel();
     JSpinner brakeSpinner = new JSpinner();
-    JLabel brakeLabel = new JLabel("Amount of brake");
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
@@ -63,33 +61,24 @@ public class CarView extends JFrame {
 
 
         SpinnerModel spinnerModel =
-                new SpinnerNumberModel(0, //initial value
+                new SpinnerNumberModel(gasOrBrakeAmount, //initial value
                         0, //min
                         100, //max
                         1);//step
 
-        SpinnerModel spinnerModel1 = new SpinnerNumberModel(0, 0, 100, 1);
-
         gasSpinner = new JSpinner(spinnerModel);
         gasSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner) e.getSource()).getValue();
+                gasOrBrakeAmount = (int) ((JSpinner) e.getSource()).getValue();
             }
         });
 
-        brakeSpinner = new JSpinner(spinnerModel1);
-        brakeSpinner.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                brakeAmount = (int) ((JSpinner) e.getSource()).getValue();
-            }
-        });
 
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
-        brakePanel.add(brakeLabel, BorderLayout.PAGE_START);
-        brakePanel.add(brakeSpinner, BorderLayout.PAGE_END);
+        brakePanel.add(gasLabel, BorderLayout.PAGE_START);
+        brakePanel.add(gasSpinner, BorderLayout.PAGE_END);
 
         this.add(gasPanel);
         this.add(brakePanel);
@@ -123,14 +112,14 @@ public class CarView extends JFrame {
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.gas(gasAmount);
+                carC.gas(gasOrBrakeAmount);
 
             }
         });
         brakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.brake(brakeAmount);
+                carC.brake(gasOrBrakeAmount);
             }
         });
 

@@ -44,6 +44,8 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) {
+
+                checkPosition(car);
                 car.move();
                 int x = (int) Math.round(car.getPosition().getX());
                 int y = (int) Math.round(car.getPosition().getY());
@@ -66,8 +68,26 @@ public class CarController {
     void brake(int amount) {
         double brake = ((double) amount) / 100;
         for (Car car : cars) {
-        car.brake(brake);
+            car.brake(brake);
         }
 
     }
+
+    void checkPosition(Car car) {
+
+        double carX = car.getPosition().getX();
+        double carY = car.getPosition().getY();
+        double carDir = car.getDirAngle();
+        double frameX = frame.drawPanel.getSize().getWidth();
+        double frameY = frame.drawPanel.getSize().getHeight();
+
+        if (carX > frameX - 110 || carX < 0) {
+            car.turn(Math.PI);
+        }
+
+        if (carY > (frameY - 110) || carY < 0) {
+            car.turn(Math.PI);
+        }
+    }
+
 }
