@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * This class represents the Controller part in the MVC pattern.
@@ -30,6 +31,7 @@ public class CarController {
         CarController cc = new CarController();
 
         cc.cars.add(new Volvo240());
+        cc.cars.add(new Saab95(0, 100));
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -90,4 +92,8 @@ public class CarController {
         }
     }
 
+
+    public List<Car> getCars() {
+        return cars;
+    }
 }

@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class TestCar {
 
     Car volvo = new Volvo240();
-    Car saab = new Saab95();
+    Car saab = new Saab95(0, 0);
     CarTransport assistanskåren = new CarTransport(Color.gray, 170, "assistanskåren", 5);
     Scania scania = new Scania();
 
@@ -112,7 +112,7 @@ public class TestCar {
 
     @Test
     public void testSaabSpeedFactor() {
-        Saab95 saab2 = new Saab95();
+        Saab95 saab2 = new Saab95(0, 0);
         saab2.setTurboOn();
         double trouble = saab2.speedFactor();
         saab2.setTurboOff();

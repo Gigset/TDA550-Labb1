@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * Subclass Saab95 inherits from Car
@@ -12,9 +13,10 @@ public class Saab95 extends Car {
      * Constructor
      */
 
-    public Saab95() {
+    public Saab95(int x, int y) {
         super(2, Color.red, 125, "Saab95");
         turboOn = false;
+        position = new Point2D.Double(x, y);
     }
 
     public void setTurboOn() {

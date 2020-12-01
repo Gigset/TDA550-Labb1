@@ -1,5 +1,9 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Abstract class Car using the interface Movable
@@ -13,6 +17,8 @@ public abstract class Vehicle implements Movable {
     private double currentSpeed; //double current speed
     protected Point2D.Double position; //Point position
     private double dirAngle; //double directional angle, radians
+    private BufferedImage image;
+    private String imageDirectory;
 
     /**
      * @param c    Color
@@ -26,7 +32,6 @@ public abstract class Vehicle implements Movable {
         enginePower = eP;
         modelName = name;
         dirAngle = 0;
-        position = new Point2D.Double(0, 0);
     }
 
     /**
@@ -49,7 +54,6 @@ public abstract class Vehicle implements Movable {
         return modelName;
     }
 
-
     double getEnginePower() {
         return enginePower;
     }
@@ -60,6 +64,25 @@ public abstract class Vehicle implements Movable {
 
     double getCurrentSpeed() {
         return currentSpeed;
+    }
+
+    void setImage(String imageDirectory) {
+        try {
+            image = ImageIO.read(new File(imageDirectory));
+        } catch (IOException ex) {
+        }
+    }
+
+    Image getImage() {
+        return image;
+    }
+
+    String getImageDirectory() {
+        return imageDirectory;
+    }
+
+    void setImageDirectory(String directory) {
+        imageDirectory = directory;
     }
 
 
