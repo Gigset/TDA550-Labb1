@@ -10,6 +10,9 @@ import java.util.List;
  * modifying the model state and the updating the view.
  */
 
+// var fasen är konstruktorn??
+
+
 public class CarController {
     // member fields:
 

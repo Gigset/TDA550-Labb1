@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.IOException;
 
 /**
  * Abstract class, represents any type of truck platform

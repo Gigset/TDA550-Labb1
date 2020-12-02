@@ -4,6 +4,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -20,7 +21,8 @@ public class CarView extends JFrame {
     // The controller member
     CarController carC;
 
-    DrawPanel drawPanel = new DrawPanel(X, Y - 240, carC.getCars());
+    DrawPanel drawPanel;
+
 
     JPanel controlPanel = new JPanel();
 
@@ -31,7 +33,6 @@ public class CarView extends JFrame {
     JLabel gasLabel = new JLabel("Amount of gas or brake");
 
     JPanel brakePanel = new JPanel();
-    JSpinner brakeSpinner = new JSpinner();
 
     JButton gasButton = new JButton("Gas");
     JButton brakeButton = new JButton("Brake");
@@ -46,6 +47,12 @@ public class CarView extends JFrame {
     // Constructor
     public CarView(String framename, CarController cc) {
         this.carC = cc;
+        try {
+
+            drawPanel = new DrawPanel(X, Y - 240, carC.getCars());
+        } catch (IOException e) {
+        }
+
         initComponents(framename);
     }
 
@@ -108,6 +115,7 @@ public class CarView extends JFrame {
         this.add(stopButton);
 
         // This actionListener is for the gas button only
+        // de andra knapparna är precis som gas
         // TODO: Create more for each component as necessary
         gasButton.addActionListener(new ActionListener() {
             @Override

@@ -32,6 +32,12 @@ public abstract class Vehicle implements Movable {
         enginePower = eP;
         modelName = name;
         dirAngle = 0;
+        position = new Point2D.Double(0, 0);
+        try {
+            image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + getModelName() + ".jpg"));
+        } catch (IOException E) {
+            System.out.println(E.getMessage() + getModelName());
+        }
     }
 
     /**
@@ -66,25 +72,10 @@ public abstract class Vehicle implements Movable {
         return currentSpeed;
     }
 
-    void setImage(String imageDirectory) {
-        try {
-            image = ImageIO.read(new File(imageDirectory));
-        } catch (IOException ex) {
-        }
-    }
 
-    Image getImage() {
+    public Image getImage() {
         return image;
     }
-
-    String getImageDirectory() {
-        return imageDirectory;
-    }
-
-    void setImageDirectory(String directory) {
-        imageDirectory = directory;
-    }
-
 
     //Sets the current speed, within [0, enginePower]
     protected void setCurrentSpeed(double amount) {
