@@ -22,7 +22,12 @@ public class Scania extends Truck {
      * @param angleChange amount which we increase platform incline
      */
     public void raisePlatform(double angleChange) {
+        if (getCurrentSpeed() != 0) {
+            System.out.println("Stop before raising platform");
+        return;
+        }
         currentInclineAngle = Math.min(70, currentInclineAngle += angleChange);
+        System.out.println("Current incline angle: "+getCurrentInclineAngle());
     }
 
     /**
@@ -31,7 +36,12 @@ public class Scania extends Truck {
      * @param angleChange amount which we decrease platform incline
      */
     public void lowerPlatform(double angleChange) {
+        if (getCurrentSpeed() != 0) {
+            System.out.println("Stop before lowering platform");
+            return;
+        }
         currentInclineAngle = Math.max(0, currentInclineAngle -= angleChange);
+        System.out.println("Current incline angle: " + getCurrentInclineAngle());
     }
 
     /**
@@ -88,7 +98,7 @@ public class Scania extends Truck {
         if (newInclineAngle < 0) {
             currentInclineAngle = 0;
         } else currentInclineAngle = newInclineAngle;
-        
+
     }
 
     /**

@@ -1,14 +1,11 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 /**
  * Subclass Volvo240 inherits from Car
  */
 public class Volvo240 extends Car {
 
-    final static double trimFactor = 1.25;
+    final static private double trimFactor = 1.25;
 
 
     /**

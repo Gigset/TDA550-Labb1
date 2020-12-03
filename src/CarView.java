@@ -39,7 +39,7 @@ public class CarView extends JFrame {
     JButton turboOnButton = new JButton("Saab Turbo on");
     JButton turboOffButton = new JButton("Saab Turbo off");
     JButton liftBedButton = new JButton("Scania Lift Bed");
-    JButton lowerBedButton = new JButton("Lower Lift Bed");
+    JButton lowerBedButton = new JButton("Scania Lower Bed");
 
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
@@ -49,7 +49,7 @@ public class CarView extends JFrame {
         this.carC = cc;
         try {
 
-            drawPanel = new DrawPanel(X, Y - 240, carC.getCars());
+            drawPanel = new DrawPanel(X, Y - 240, carC.getVehicles());
         } catch (IOException e) {
         }
 
@@ -115,7 +115,7 @@ public class CarView extends JFrame {
         this.add(stopButton);
 
         // This actionListener is for the gas button only
-        // de andra knapparna är precis som gas
+
         // TODO: Create more for each component as necessary
         gasButton.addActionListener(new ActionListener() {
             @Override
@@ -124,13 +124,64 @@ public class CarView extends JFrame {
 
             }
         });
-        brakeButton.addActionListener(new ActionListener() {
+/**
+ *
+ *
+ * actionlistener for the start button
+ */
+        startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.brake(gasOrBrakeAmount);
+                carC.startEngine();
             }
         });
 
+        /**
+         * actionlistener for the stop button
+         */
+
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.stopEngine();
+            }
+        });
+
+        /**
+         * actionlistener for the turboOn button
+         */
+
+        turboOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.setTurboOn();
+            }
+        });
+
+        /**
+         * actionlistener for the turboOff button
+         */
+
+        turboOffButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.setTurboOff();
+            }
+        });
+
+        liftBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.scaniaLiftBed();
+            }
+        });
+
+        lowerBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                carC.scaniaLowerBed();
+            }
+        });
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();

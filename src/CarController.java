@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,8 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<Car> cars = new ArrayList<>();
+
+    private List<Vehicle> vehicles = new ArrayList<>();
 
     //methods:
 
@@ -33,8 +35,13 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Saab95(0, 100));
+        cc.vehicles.add(new Volvo240());
+        cc.vehicles.add(new Saab95());
+        cc.vehicles.add(new Scania());
+
+        for (int i = 0; i < cc.vehicles.size(); i++) {
+            cc.vehicles.get(i).setPosition(new Point2D.Double(0, i * 100));
+        }
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
@@ -48,12 +55,12 @@ public class CarController {
      * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
+            for (Vehicle vehicle : vehicles) {
 
-                checkPosition(car);
-                car.move();
-                int x = (int) Math.round(car.getPosition().getX());
-                int y = (int) Math.round(car.getPosition().getY());
+                checkPosition(vehicle);
+                vehicle.move();
+                int x = (int) Math.round(vehicle.getPosition().getX());
+                int y = (int) Math.round(vehicle.getPosition().getY());
                 frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
@@ -62,41 +69,86 @@ public class CarController {
     }
 
     // Calls the gas method for each car once
-    void gas(int amount) {
+    public void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Car car : cars
+        for (Vehicle v : vehicles
         ) {
-            car.gas(gas);
+            v.gas(gas);
         }
     }
 
-    void brake(int amount) {
+    public void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (Car car : cars) {
-            car.brake(brake);
+        for (Vehicle v : vehicles) {
+            v.brake(brake);
         }
-
     }
 
-    void checkPosition(Car car) {
+    public void startEngine() {
+        for (Vehicle v : vehicles) {
+            v.startEngine();
+        }
+    }
 
-        double carX = car.getPosition().getX();
-        double carY = car.getPosition().getY();
-        double carDir = car.getDirAngle();
+    public void stopEngine() {
+        for (Vehicle v : vehicles) {
+            v.stopEngine();
+        }
+    }
+
+    /**
+     * * hur ska vi använda turbo on/off när vi tar in alla bilar?
+     **/
+
+    public void setTurboOn() {
+        for (Vehicle v : vehicles) {
+            if (v instanceof Saab95) {
+                ((Saab95) v).setTurboOn();
+            }
+        }
+    }
+
+    public void setTurboOff() {
+        for (Vehicle v : vehicles) {
+            if (v instanceof Saab95) {
+                ((Saab95) v).setTurboOff();
+            }
+        }
+    }
+
+    public void scaniaLiftBed() {
+        for (Vehicle v : vehicles) {
+            if (v instanceof Scania) {
+                ((Scania) v).raisePlatform(10);
+            }
+        }
+    }
+
+    public void scaniaLowerBed() {
+        for (Vehicle v : vehicles) {
+            if (v instanceof Scania) {
+                ((Scania) v).lowerPlatform(10);
+            }
+        }
+    }
+
+
+    public void checkPosition(Vehicle vehicle) {
+
+        double carX = vehicle.getPosition().getX();
         double frameX = frame.drawPanel.getSize().getWidth();
-        double frameY = frame.drawPanel.getSize().getHeight();
 
         if (carX > frameX - 110 || carX < 0) {
-            car.turn(Math.PI);
+            vehicle.turn(Math.PI);
         }
 
-        if (carY > (frameY - 110) || carY < 0) {
-            car.turn(Math.PI);
-        }
+        //     if (carY > (frameY - 110) || carY < 0) {
+        //       vehicle.turn(Math.PI);
+        // }
     }
 
 
-    public List<Car> getCars() {
-        return cars;
+    public List<Vehicle> getVehicles() {
+        return vehicles;
     }
 }

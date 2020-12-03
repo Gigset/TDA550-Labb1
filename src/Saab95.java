@@ -7,16 +7,16 @@ import java.awt.geom.Point2D;
 
 public class Saab95 extends Car {
 
-    boolean turboOn;
+    private boolean turboOn;
 
     /**
      * Constructor
      */
 
-    public Saab95(int x, int y) {
+    public Saab95() {
         super(2, Color.red, 125, "Saab95");
         turboOn = false;
-        position = new Point2D.Double(x, y);
+        position = new Point2D.Double(0, 0);
     }
 
     public void setTurboOn() {
@@ -26,7 +26,7 @@ public class Saab95 extends Car {
     /**
      *
      */
-    void setTurboOff() {
+    public void setTurboOff() {
         turboOn = false;
     }
 
@@ -34,11 +34,10 @@ public class Saab95 extends Car {
      * @return factor depending on enginePower and turbo
      */
 
-    double speedFactor() {
+    public double speedFactor() {
         double turbo = 1;
-        if (turboOn) turbo = 1.3;
+        if (turboOn) turbo = 2.5;
         return getEnginePower() * 0.01 * turbo;
     }
-
 
 }

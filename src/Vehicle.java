@@ -18,7 +18,6 @@ public abstract class Vehicle implements Movable {
     protected Point2D.Double position; //Point position
     private double dirAngle; //double directional angle, radians
     private BufferedImage image;
-    private String imageDirectory;
 
     /**
      * @param c    Color

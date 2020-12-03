@@ -9,16 +9,10 @@ import java.util.List;
 public class DrawPanel extends JPanel {
 
     // Just a single image, TODO: Generalize
-    BufferedImage volvoImage;
-    BufferedImage saabImage;
-    BufferedImage scaniaImage;
-    List<Car> cars;
+    List<Vehicle> vehicles;
 
     // To keep track of a single cars position
     Point volvoPoint = new Point();
-    Point saabPoint = new Point();
-    Point scaniaPoint = new Point();
-
 
     // TODO: Make this general for all cars
     void moveit(int x, int y) {
@@ -28,13 +22,13 @@ public class DrawPanel extends JPanel {
 
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y, List<Car> carsIn) throws IOException {
+    public DrawPanel(int x, int y, List<Vehicle> carsIn) throws IOException {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
         // Print an error message in case file is not found with a try/catch block
 
-        cars = carsIn;
+        vehicles = carsIn;
 
     }
 
@@ -44,9 +38,9 @@ public class DrawPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (Car car : cars) {
+        for (Vehicle v : vehicles) {
 
-            g.drawImage(car.getImage(), (int) car.getPosition().getX(), (int) car.getPosition().getY(), null);
+            g.drawImage(v.getImage(), (int) v.getPosition().getX(), (int) v.getPosition().getY(), null);
 
         }
 
