@@ -40,7 +40,8 @@ public class CarController {
         cc.vehicles.add(new Scania());
 
         for (int i = 0; i < cc.vehicles.size(); i++) {
-            cc.vehicles.get(i).setPosition(new Point2D.Double(0, i * 100));
+            cc.vehicles.get(i).setPosition(new Point2D.Double(10, i * 100));
+
         }
 
         // Start a new view and send a reference of self
@@ -61,7 +62,6 @@ public class CarController {
                 vehicle.move();
                 int x = (int) Math.round(vehicle.getPosition().getX());
                 int y = (int) Math.round(vehicle.getPosition().getY());
-                frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }

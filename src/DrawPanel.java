@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
@@ -10,16 +9,6 @@ public class DrawPanel extends JPanel {
 
     // Just a single image, TODO: Generalize
     List<Vehicle> vehicles;
-
-    // To keep track of a single cars position
-    Point volvoPoint = new Point();
-
-    // TODO: Make this general for all cars
-    void moveit(int x, int y) {
-        volvoPoint.x = x;
-        volvoPoint.y = y;
-    }
-
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y, List<Vehicle> carsIn) throws IOException {
