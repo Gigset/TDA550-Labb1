@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CarTransport extends Truck {
+public class CarTransport extends Vehicle {
 
     /**
      * List for cars loaded on the platform.

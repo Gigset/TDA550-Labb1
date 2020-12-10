@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Scania subclass to car, with private instance variable platform
  */
-public class Scania extends Truck {
+public class Scania extends Vehicle {
 
     private double currentInclineAngle;
 

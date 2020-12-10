@@ -1,10 +1,13 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -17,10 +20,11 @@ import java.io.IOException;
 public class CarView extends JFrame {
     private static final int X = 1000;
     private static final int Y = 600;
+    List<Vehicle> vehicles;
 
     // The controller member
     CarController carC;
-
+    CarModel carM;
     DrawPanel drawPanel;
 
 
@@ -44,12 +48,16 @@ public class CarView extends JFrame {
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
-    // Constructor
-    public CarView(String framename, CarController cc) {
-        this.carC = cc;
-        try {
+    private BufferedImage image;
 
-            drawPanel = new DrawPanel(X, Y - 240, carC.getVehicles());
+
+    //
+    // Constructor
+    public CarView(String framename, CarController cc, CarModel cm) {
+        this.carC = cc;
+        this.carM = cm;
+        try {
+            drawPanel = new DrawPanel(X, Y - 240, carM.getVehicles());
         } catch (IOException e) {
         }
 
@@ -120,7 +128,7 @@ public class CarView extends JFrame {
         gasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.gas(gasOrBrakeAmount);
+                carM.gas(gasOrBrakeAmount);
 
             }
         });
@@ -132,7 +140,7 @@ public class CarView extends JFrame {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.startEngine();
+                carM.startEngine();
             }
         });
 
@@ -143,7 +151,7 @@ public class CarView extends JFrame {
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.stopEngine();
+                carM.stopEngine();
             }
         });
 
@@ -154,7 +162,7 @@ public class CarView extends JFrame {
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.setTurboOn();
+                carM.setTurboOn();
             }
         });
 
@@ -165,21 +173,21 @@ public class CarView extends JFrame {
         turboOffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.setTurboOff();
+                carM.setTurboOff();
             }
         });
 
         liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.scaniaLiftBed();
+                carM.scaniaLiftBed();
             }
         });
 
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.scaniaLowerBed();
+                carM.scaniaLowerBed();
             }
         });
 
