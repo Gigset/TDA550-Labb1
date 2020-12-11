@@ -16,7 +16,7 @@ public class Saab95 extends Car {
     public Saab95() {
         super(2, Color.red, 125, "Saab95");
         turboOn = false;
-        position = new Point2D.Double(0, 0);
+        position = new Point(0, 0);
     }
 
     public void setTurboOn() {

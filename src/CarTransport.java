@@ -101,7 +101,7 @@ public class CarTransport extends Vehicle {
     public void unloadCar() {
         if (!platformRaised) {
             Car c = carsOnPlatform.get(carsOnPlatform.size() - 1);
-            c.setPosition(new Point2D.Double(getPosition().getX() + 2, getPosition().getY()));
+            c.setPosition(new Point(getPosition().x + 2, getPosition().y));
 
             carsOnPlatform.remove(carsOnPlatform.size() - 1);
 

@@ -15,9 +15,9 @@ public abstract class Vehicle implements Movable {
     private double enginePower; //double engine power
     private final String modelName; //String model name
     private double currentSpeed; //double current speed
-    protected Point2D.Double position; //Point position
+    protected Point position; //Point position
     private double dirAngle; //double directional angle, radians
-    private BufferedImage image;
+
 
     /**
      * @param c    Color
@@ -31,23 +31,19 @@ public abstract class Vehicle implements Movable {
         enginePower = eP;
         modelName = name;
         dirAngle = 0;
-        position = new Point2D.Double(0, 0);
-        try {
-            image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + getModelName() + ".jpg"));
-        } catch (IOException E) {
-            System.out.println(E.getMessage() + getModelName());
-        }
+        position = new Point(0, 0);
+
     }
 
     /**
      * Getters and setters to access private instance variables
      */
 
-    public Point2D.Double getPosition() {
+    public Point getPosition() {
         return position;
     }
 
-    public void setPosition(Point2D.Double newPos) {
+    public void setPosition(Point newPos) {
         position = newPos;
     }
 
@@ -71,10 +67,6 @@ public abstract class Vehicle implements Movable {
         return currentSpeed;
     }
 
-
-    public Image getImage() {
-        return image;
-    }
 
     //Sets the current speed, within [0, enginePower]
     protected void setCurrentSpeed(double amount) {

@@ -11,42 +11,67 @@ import java.util.List;
  * modifying the model state and the updating the view.
  */
 
-
-
 public class CarController {
     // member fields:
-
-    // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
-    // The timer is started with an listener (see below) that executes the statements
-    // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
-
-    // The frame that represents this instance View of the MVC pattern
+    protected CarModel model ;
+    //behöver konstruktor här för att veta vad controllern ska styra (vilken model)
+    //allt som händer med knappar ska skickas till carC och sen skickas direkt vidare till carM. Som en mellanhand.
+    protected CarController(CarModel carmodel){
+        this.model = carmodel;
+//hit ska det skickas från carview och slussas vidare till modellen.
+// Controller anropar metoder i model när den får en signal från viewen.
+    }
 
     CarView frame;
     // A list of cars, modify if needed
 
-    private List<Vehicle> vehicles = new ArrayList<>();
 
-    //methods:
+    //methods to send signal from view to model:
+
+    protected void brake(int amount){
+        model.brake(amount);
+    }
+
+
+    protected void gas(int amount){
+        model.gas(amount);
+    }
+
+    protected void startEngine(){
+        model.startEngine();
+    }
+
+    protected void stopEngine(){
+        model.stopEngine();
+    }
+
+    protected void setTurboOn(){
+        model.setTurboOn();
+    }
+
+    protected void setTurboOff() {
+        model.setTurboOff();
+    }
+
+    protected void scaniaLiftBed(){
+        model.scaniaLiftBed();
+    }
+
+    protected void scaniaLowerBed(){
+        model.scaniaLowerBed();
+    }
+
+    protected void removeCar(){
+        model.removeCar();
+    }
+
+    protected void addCar(){
+        model.addCar();
+    }
 
 
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
      * */
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            for (Vehicle vehicle : vehicles) {
-
-                cm.turnAroundCar(vehicle);
-                vehicle.move();
-                int x = (int) Math.round(vehicle.getPosition().getX());
-                int y = (int) Math.round(vehicle.getPosition().getY());
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-            }
-        }
     }
-}
 
