@@ -76,7 +76,7 @@ public class SpeedPanel extends JFrame implements Observer{
             for(Vehicle v : carm.vehicles){
                 for(JLabel vl : vehicleLabels){
                     if(vl.toString().contains(v.getModelName())){
-                        vl.setText(v.getModelName() + " has speed" + v.getCurrentSpeed());
+                        vl.setText(v.getModelName() + " has speed " + v.getCurrentSpeed());
                     }
                 }
             }

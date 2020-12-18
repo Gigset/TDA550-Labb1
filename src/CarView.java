@@ -11,7 +11,6 @@ import java.util.List;
 public class CarView extends JFrame implements Observer {
     private static final int X = 1000;
     private static final int Y = 600;
-    List<Vehicle> vehicles;
 
     CarController carC;
     DrawPanel drawPanel;
@@ -217,18 +216,6 @@ public class CarView extends JFrame implements Observer {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    @Override
-    public void refresh() {
-        for (Vehicle vehicle : carC.model.vehicles) {
-
-            carC.model.turnAroundCar(vehicle);
-            vehicle.move();
-            int x = (int) Math.round(vehicle.getPosition().getX());
-            int y = (int) Math.round(vehicle.getPosition().getY());
-            // repaint() calls the paintComponent method of the panel
-            drawPanel.repaint();
-        }
-    }
 
     public int getX() {
         return X;
@@ -236,5 +223,11 @@ public class CarView extends JFrame implements Observer {
 
     public int getY() {
         return Y;
+    }
+
+
+    @Override
+    public void refresh() {
+        repaint();
     }
 }
