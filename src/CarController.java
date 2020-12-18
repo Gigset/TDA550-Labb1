@@ -13,39 +13,35 @@ import java.util.List;
 
 public class CarController {
     // member fields:
-    protected CarModel model ;
+    protected CarModel model;
+
     //behöver konstruktor här för att veta vad controllern ska styra (vilken model)
     //allt som händer med knappar ska skickas till carC och sen skickas direkt vidare till carM. Som en mellanhand.
-    protected CarController(CarModel carmodel){
+    protected CarController(CarModel carmodel) {
         this.model = carmodel;
 //hit ska det skickas från carview och slussas vidare till modellen.
 // Controller anropar metoder i model när den får en signal från viewen.
     }
-
-    CarView frame;
-    // A list of cars, modify if needed
-
-
     //methods to send signal from view to model:
 
-    protected void brake(int amount){
+    protected void brake(int amount) {
         model.brake(amount);
     }
 
 
-    protected void gas(int amount){
+    protected void gas(int amount) {
         model.gas(amount);
     }
 
-    protected void startEngine(){
+    protected void startEngine() {
         model.startEngine();
     }
 
-    protected void stopEngine(){
+    protected void stopEngine() {
         model.stopEngine();
     }
 
-    protected void setTurboOn(){
+    protected void setTurboOn() {
         model.setTurboOn();
     }
 
@@ -53,19 +49,19 @@ public class CarController {
         model.setTurboOff();
     }
 
-    protected void scaniaLiftBed(){
+    protected void scaniaLiftBed() {
         model.scaniaLiftBed();
     }
 
-    protected void scaniaLowerBed(){
+    protected void scaniaLowerBed() {
         model.scaniaLowerBed();
     }
 
-    protected void removeCar(){
+    protected void removeCar() {
         model.removeCar();
     }
 
-    protected void addCar(){
+    protected void addCar() {
         model.addCar();
     }
 
@@ -73,5 +69,5 @@ public class CarController {
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.
      * */
-    }
+}
 

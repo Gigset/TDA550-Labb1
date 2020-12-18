@@ -17,18 +17,19 @@ public class SpeedPanel extends JFrame implements Observer{
 
     public SpeedPanel(CarModel model) {
         this.carm = model;
-        cars = model.vehicles.size();
-        spd = new SpeedPanelDrawer();
+        this.cars = model.vehicles.size();
+        this.spd = new SpeedPanelDrawer();
         constructLabel();
     }
 
     void initializeLabels() {
         this.setPreferredSize(new Dimension(X, Y));
 
+        this.setLayout(new FlowLayout(FlowLayout.LEFT, 0,0));
         this.add(spd);
 
-        this.setLayout(new FlowLayout(FlowLayout.LEFT));
-        panel.setLayout(new GridLayout(5, 2));
+
+        panel.setLayout(new GridLayout(10, 1));
 
         int idx = 0;
         for (JLabel vl : vehicleLabels) {
@@ -64,11 +65,11 @@ public class SpeedPanel extends JFrame implements Observer{
         this.cars = carm.getVehicles().size();
         }
 
+        @Override
         public void refresh(){
         if(cars != carm.vehicles.size()){
             refreshAllLabels();
         }
-        int idx = 0;
 
             for(Vehicle v : carm.vehicles){
                 for(JLabel vl : vehicleLabels){

@@ -85,10 +85,11 @@ public class CarModel {
         } else System.out.println("you have no cars");
     }
 
+
     public void turnAroundCar(Vehicle vehicle) {
 
         double carX = vehicle.getPosition().getX();
-        //double frameX = frame.drawPanel.getSize().getWidth();
+     //   double frameX = frame.drawPanel.getSize().getWidth();
         double frameX = 1000;
         if (carX > frameX - 110 || carX < 0) {
             vehicle.turn(Math.PI);

@@ -1,11 +1,9 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
 
@@ -39,7 +37,6 @@ public class CarView extends JFrame implements Observer {
     JButton stopButton = new JButton("Stop all cars");
     JButton addCarButton = new JButton("Add a car");
     JButton removeButton = new JButton("Remove a car");
-
 
     // Constructor
     public CarView(String framename, CarController cc) {
@@ -231,5 +228,13 @@ public class CarView extends JFrame implements Observer {
             // repaint() calls the paintComponent method of the panel
             drawPanel.repaint();
         }
+    }
+
+    public int getX() {
+        return X;
+    }
+
+    public int getY() {
+        return Y;
     }
 }
