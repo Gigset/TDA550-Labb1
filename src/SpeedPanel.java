@@ -54,8 +54,10 @@ public class SpeedPanel extends JFrame implements Observer{
 
         private void constructLabel () {
             for (Vehicle v : carm.vehicles) {
-                vehicleLabels.add(new JLabel("Model:" + v.getModelName() + " Speed" + v.getCurrentSpeed()));
+
+                vehicleLabels.add(new JLabel("Model: " + v.getModelName() + " Speed: " + v.getCurrentSpeed()));
             }
+            initializeLabels();
         }
 
         public void refreshAllLabels(){

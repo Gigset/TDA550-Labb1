@@ -32,12 +32,12 @@ public class Application {
         for (int i = 0; i < model.vehicles.size(); i++) {
             model.vehicles.get(i).setPosition(new Point(10, i * 100));
         }
+
         observers.add(new CarView("Frame N.O 2", controller));
         observers.add(new SpeedPanel(model));
 
     }
-//gör metod som är typ "ritaHastighetsRuta
-    //  hastighetsruta = new SpeedPanel();
+
 
     private class TimerListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
